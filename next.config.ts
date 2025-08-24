@@ -1,8 +1,16 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  devIndicators: false
+  devIndicators: false,
   /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.cosmicjs.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
