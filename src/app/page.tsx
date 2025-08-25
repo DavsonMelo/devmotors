@@ -3,13 +3,15 @@ import { getDataHome } from "@/utils/actions/get-data";
 import { HomeProps } from "@/utils/home.type";
 import { Hero } from "@/components/hero";
 import { Phone } from "lucide-react";
+import { Services } from "@/components/home/services";
+import { Container } from "@/components/container";
+import { Footer } from "@/components/home/footer";
 
 import styles from "./styles.module.scss";
 
 export default async function Home() {
   const { object }: HomeProps = await getDataHome()
 
-  console.log(object.title)
   return (
     <main>
       <Submenu />
@@ -20,6 +22,11 @@ export default async function Home() {
         bannerUrl={object.metadata.banner.url}
         icon={<Phone size={24} color="#fff" />}
       />
+      <Container>
+        <Services object={object} />
+        <Footer object={object} />
+      </Container>
+      
     </main>
   );
 }
