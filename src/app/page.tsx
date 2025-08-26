@@ -1,6 +1,7 @@
 import { Submenu } from "@/components/home/submenu";
-import { getDataHome } from "@/utils/actions/get-data";
+import { getDataHome, getSubMenu } from "@/utils/actions/get-data";
 import { HomeProps } from "@/utils/home.type";
+import { MenuProps } from "@/utils/menu.type";
 import { Hero } from "@/components/hero";
 import { Phone } from "lucide-react";
 import { Services } from "@/components/home/services";
@@ -11,10 +12,12 @@ import styles from "./styles.module.scss";
 
 export default async function Home() {
   const { object }: HomeProps = await getDataHome()
+  const submenu: MenuProps = await getSubMenu()
+
 
   return (
     <main>
-      <Submenu />
+      {submenu.objects.length > 0 && <Submenu menu={submenu} />}
       <Hero
         heading={object.metadata.heading}
         buttonTitle={object.metadata.cta_button.title}
